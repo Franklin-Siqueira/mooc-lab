@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 Issues:
 
     . initial commint and deployment resulted in no CSS renderization
-    .
+    . problem with SSH-keys
     .
     .
     
