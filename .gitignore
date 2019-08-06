@@ -1,0 +1,5 @@
+# list of files/directories to be ignored (not uploaded) to heroku
+virtual
+*.DS_Store
+*.pyc
+__pycache__

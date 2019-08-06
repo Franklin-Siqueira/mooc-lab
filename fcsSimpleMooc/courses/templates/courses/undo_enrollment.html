@@ -1,0 +1,12 @@
+{% extends 'courses/course_dashboard.html' %}
+
+{% block dashboard_content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h3>Are you sure you want to drop this course?</h3>
+    <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Confirm!</button>
+        <a href="{% url 'courses:announcements' course.shortcut %}" class="pure-button">Back</a>
+    </div>
+</form>
+{% endblock %}
