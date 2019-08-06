@@ -1,3 +1,18 @@
+'''
+
+URLs for the courses' related instances
+
+. 'index
+. '<shortcut>', views.details, name = "details"
+. '<shortcut>/enrollment/', views.enrollment, name = "enrollment"
+. '<shortcut>/undo_enrollment/', views.undo_enrollment, name = "undo_enrollment"
+. '<shortcut>/announcements/', views.announcements, name = "announcements"
+. '<shortcut>/announcements/<pk>', views.show_announcement, name = "show_announcement"
+. '<shortcut>/lessons/', views.lessons, name = "lessons"
+. '<shortcut>/lessons/<pk>', views.lesson, name = "lesson"
+. '<shortcut>/material/<pk>', views.material, name = "material"
+
+'''
 from django.contrib import admin
 from fcsSimpleMooc.courses import views
 from django.urls import path, include, re_path
