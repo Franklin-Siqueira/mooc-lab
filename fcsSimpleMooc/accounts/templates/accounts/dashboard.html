@@ -1,3 +1,10 @@
+<!-- 
+
+Base html file for user's control panel applications
+
+Extends ../core/templates/base.html
+
+ -->
 {% extends "base.html" %}
 <!--  Load courses/templatetags/courses_tags.py -->
 {% load courses_tags %}
@@ -23,10 +30,11 @@
             {% block menu_options %}
                 <li class="pure-menu-heading">Courses</li>
                 <!-- Loop with enrollments in load_my_courses from courses_tags.py -->
+                
                 {% for enrollment in enrollments %}
 	                <li>
 	                    <a href="{% url 'courses:announcements' enrollment.course.shortcut %}">
-	                    <i class="fa fa-book"></i>{{ enrollment.course }}
+	                    <i class="fa fa-book"></i> {{ enrollment.course }}
 	                    </a>
 	                </li>
                 {% empty %}
@@ -35,9 +43,9 @@
 	         </ul>
 	         <ul>
                 <li class="pure-menu-heading">Account Settings</li>
-                <li><a href="{% url 'accounts:edit' %}"><i class="fa fa-cog"></i>Edit data</a>
+                <li><a href="{% url 'accounts:edit' %}"><i class="fa fa-cog"></i> Edit data</a>
                 </li>
-                <li><a href="{% url 'accounts:edit_password' %}"><i class="fa fa-lock"></i>Edit password</a>
+                <li><a href="{% url 'accounts:edit_password' %}"><i class="fa fa-lock"></i> Edit password</a>
                 </li>
            	</ul>
             {% endblock %}

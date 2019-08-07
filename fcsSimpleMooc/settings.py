@@ -23,7 +23,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -31,10 +30,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u8z5#+i)&dg!!co_u=ht#6@nt3)r17iqi8f3-7oox3c(z!ii&('
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
+
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -81,17 +79,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fcsSimpleMooc.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+#
+#    DATABASES configuration transfered to local_settings.py
+#
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -125,7 +124,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -156,7 +154,8 @@ AUTH_USER_MODEL = 'accounts.User'
 # Heroku settings
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.config()
+DATABASES = {'default': dj_database_url.config(),}
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 #Allow all host headers
@@ -166,4 +165,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# importing local settings in order to run application locally
+try:
+    from fcsSimpleMooc.local_settings import *
+except ImportError:
+    pass
 ##########                  END                ###########

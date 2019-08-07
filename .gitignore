@@ -1,5 +1,9 @@
+#
 # list of files/directories to be ignored (not uploaded) to heroku
-virtual
+#
+*.sqlite3
 *.DS_Store
 *.pyc
+virtual
 __pycache__
+local_settings.py
