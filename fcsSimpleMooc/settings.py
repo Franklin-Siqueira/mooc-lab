@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 Issues:
 
     . initial commint and deployment resulted in no CSS renderization
-    . problem with SSH-keys
+    . problem with SSH-keys (resolved)
     .
     .
     
@@ -164,6 +164,7 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+# Not used, as static files are inside /core/ directory
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # importing local settings in order to run application locally
