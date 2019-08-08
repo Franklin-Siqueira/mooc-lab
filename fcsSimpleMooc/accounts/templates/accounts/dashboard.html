@@ -37,8 +37,14 @@ Extends ../core/templates/base.html
 	                    <i class="fa fa-book"></i> {{ enrollment.course }}
 	                    </a>
 	                </li>
-                {% empty %}
-                	<li>No courses found!</li>
+                {% empty %} 
+                <!-- in case there are no items to show -->
+                
+                	<li>
+                		<a href="#">
+                		<i class="fa fa-book"></i> No courses found!
+                		</a>
+                	</li>
                 {% endfor %}
 	         </ul>
 	         <ul>

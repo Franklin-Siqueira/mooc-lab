@@ -1,3 +1,14 @@
+'''
+
+forms for the courses' related instances
+
+    . ContactCourse
+        . send_mail
+    
+    . CommentForm
+        . Meta
+        
+'''
 from django import forms
 from django.core.mail import send_mail
 from django.conf import settings

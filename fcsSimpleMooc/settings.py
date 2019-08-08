@@ -17,10 +17,13 @@ Issues:
     .
     
 """
-
-import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import os
+#
+#from django.conf.settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+#
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -43,9 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # libraries (libs)
+    'taggit',
+    # custom apps
     'fcsSimpleMooc.core',
     'fcsSimpleMooc.courses',
     'fcsSimpleMooc.accounts',
+    'fcsSimpleMooc.forum',
 ]
 
 MIDDLEWARE = [
@@ -58,8 +65,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-ROOT_URLCONF = 'fcsSimpleMooc.urls'
 
 TEMPLATES = [
     {
@@ -76,6 +81,29 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+#
+#                            DEPRECATED
+#
+# from  django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+# TEMPLATE_CONTEXT_PROCESSORS = TCP + ('django.core.context_processors.request',)
+
+ROOT_URLCONF = 'fcsSimpleMooc.urls'
 
 WSGI_APPLICATION = 'fcsSimpleMooc.wsgi.application'
 
@@ -94,21 +122,6 @@ WSGI_APPLICATION = 'fcsSimpleMooc.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
 
 
 # Internationalization
@@ -152,7 +165,7 @@ LOGOUT_REDIRECT_URL = 'core:home'
 AUTH_USER_MODEL = 'accounts.User'
 
 # Heroku settings
-import dj_database_url
+# from import dj_database_url
 
 DATABASES = {'default': dj_database_url.config(),}
 
@@ -164,7 +177,7 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Not used, as static files are inside /core/ directory
+# Not used, as static files are inside "/core/" directory
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # importing local settings in order to run application locally
