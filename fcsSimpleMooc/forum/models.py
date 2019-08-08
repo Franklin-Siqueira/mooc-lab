@@ -45,7 +45,7 @@ class Thread(models.Model):
 
     #@models.permalink
     def get_absolute_url(self):
-        return ('forum:thread', (), {'shortcut': self.shortcut})
+        return ('forum:thread', {'slug': self.slug})
 
     class Meta:
         verbose_name = 'Topic'

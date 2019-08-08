@@ -27,7 +27,7 @@ admin.autodiscover()
 
 app_name = 'forum'
 
-urlpatterns = [path('index', index, name = 'index'), 
+urlpatterns = [path('', index, name = 'index'), 
                path('tag/<tag>/', index, name = "index_tagged"),
                path('replies/<pk>/correct/', reply_correct, name = "reply_correct"),
                path('replies/<pk>/incorrect/', reply_incorrect, name = "reply_incorrect"),
