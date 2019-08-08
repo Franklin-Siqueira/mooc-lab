@@ -1,9 +1,25 @@
 #
 # list of files/directories to be ignored (not uploaded) to heroku
 #
+# files
+#
 *.sqlite3
 *.DS_Store
 *.pyc
+local_settings.py
+#
+# Directories
+#
 virtual
 __pycache__
-local_settings.py
+fcsSimpleMooc/__pycache__
+fcsSimpleMooc/accounts/__pycache__
+fcsSimpleMooc/core/__pycache__
+fcsSimpleMooc/courses/__pycache__
+fcsSimpleMooc/forum/__pycache__
+fcsSimpleMooc/accounts/migrations/__pycache__
+fcsSimpleMooc/core/migrations/__pycache__
+fcsSimpleMooc/courses/migrations/__pycache__
+fcsSimpleMooc/courses/templatetags/migrations/__pycache__
+fcsSimpleMooc/courses/tests/migrations/__pycache__
+fcsSimpleMooc/forum/migrations/__pycache__
