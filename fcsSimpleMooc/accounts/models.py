@@ -14,8 +14,8 @@ from django.conf import settings
 class User(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField('User name', 
-                                max_length=30, 
-                                unique=True, 
+                                max_length = 30, 
+                                unique = True, 
                                 validators = [validators.RegexValidator(re.compile('^[\w.@+-]+$'),
                                                                         'Please, note that only letters, numbers, and the following characters are valid: @/./+/-/_', 
                                                                         'invalid')])
@@ -47,9 +47,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 class PasswordReset(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name = 'User', on_delete=models.PROTECT) #related_name = 'resets')
-    key = models.CharField('Key', max_length=100, unique=True)
-    created_at = models.DateTimeField('Created on', auto_now_add=True)
-    confirmed = models.BooleanField('Confirmed?', default=False, blank=True)
+    key = models.CharField('Key', max_length = 100, unique = True)
+    created_at = models.DateTimeField('Created on', auto_now_add = True)
+    confirmed = models.BooleanField('Confirmed?', default=False, blank = True)
 
     def __str__(self):
         return '{0} on {1}'.format(self.user, self.created_at)
@@ -58,4 +58,6 @@ class PasswordReset(models.Model):
         verbose_name = 'New password'
         verbose_name_plural = 'New passwords'
         ordering = ['-created_at']
+##########################################################
 ##########                  END                ###########
+##########################################################

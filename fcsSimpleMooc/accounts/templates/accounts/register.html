@@ -1,28 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="pure-g-r content-ribbon">
-    <div class="pure-u-1">
-        <h2>Please, enter your data</h2>
-        <!--  testing HTML5 'novalidate' option (suggested in the course) -->
-        <form class="pure-form pure-form-stacked" novalidate method="post">
-            {% csrf_token %}
-            <fieldset>
-                {{ form.non_field_errors }}
-
-                {% for field in form %}
-                <div class="pure-control-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {{ field.errors }}
-                </div>
-                {% endfor %}
-
-                <div class="pure-controls">
-                    <button type="submit" class="pure-button pure-button-primary">Signup!</button>
-                </div>
-            </fieldset>
-        </form>
+<div class="formwrapper">
+    <div class="card">
+		<div class="card-body">
+	        <h2>Please, enter your data</h2>
+	        <!--  testing HTML5 'novalidate' option (suggested in the course) -->
+	        <form novalidate method="post">
+	            {% csrf_token %}
+	            <fieldset>
+	                {{ form.non_field_errors }}
+	                {% for field in form %}
+	                <div class="form-group">
+	                    {{ field.label_tag }}
+	                    {{ field }}
+	                    {{ field.errors }}
+	                </div>
+	                {% endfor %}
+	                <div class="submitbutton">
+				        <input id="submit" type="submit" value="Register">
+				    </div>
+	            </fieldset>
+	        </form>
+	    </div>
     </div>
 </div>
 {% endblock %}
+<div class="card"> <!--  style="width: 15rem;" -->
+      <img class="card-img-top" src="https://picsum.photos/200/150/?random" alt="Card image cap">
+      <div class="card-body">	
+      	<div class="meta">
+            <a>Video Classes</a>
+         </div>         
+        <h5 class="card-title">Publish Your Classes</h5>
+        <p class="card-text">fcs-Simple MOOC provides a practical and simple system giving the teacher
+             the power to engage motivated students in a resources-rich environment.
+             Video-classes, PDF files, featured slides, and images. You name it! <br>fcs-Simple MOOC backs you up!</p>
+      </div>
+      <div class="card-footer">
+          <small>More information?</small>
+          <a href="#" class="btn btn-secondary float-right btn-sm">Learn</a>
+       </div>
+</div>

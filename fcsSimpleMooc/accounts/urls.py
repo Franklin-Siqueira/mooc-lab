@@ -1,3 +1,10 @@
+'''
+
+URLs for accounts in accounts/views.py
+
+    . 
+
+'''
 # views: register, dashboard, edit, edit_password, password_reset_confirm, password_reset
 from fcsSimpleMooc.accounts.views import * 
 from django.urls import path, include

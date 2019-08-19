@@ -1,7 +1,7 @@
 '''
-
+_______________________________________
 Views for the forum's related instances
-
+---------------------------------------
     . ForumView
         . get_queryset(self):
         . get_context_data(self, **kwargs):
@@ -45,7 +45,7 @@ from .forms import ReplyForm
 
 class ForumView(ListView):
 
-    paginate_by = 5
+    paginate_by = 3
     template_name = 'forum/index.html'
 
     # ordering views
@@ -74,6 +74,7 @@ class ForumView(ListView):
         
         context = super(ForumView, self).get_context_data(**kwargs)
         context['tags'] = Thread.tags.all()
+        context['forum_page'] = 'active'
         
         return context
 #
@@ -87,24 +88,27 @@ class ThreadView(DetailView):
     def get(self, request, *args, **kwargs):
         
         response = super(ThreadView, self).get(request, *args, **kwargs)
-        
-        if not self.request.user.is_authenticated() or (self.object.author != self.request.user):
+        # 08/15/2019
+        # changed self.request.user.is_authenticated() to self.request.user.is_authenticated
+        if not self.request.user.is_authenticated or (self.object.author != self.request.user):
             self.object.views = self.object.views + 1
             self.object.save()
             
         return response
 
+    # add general tags to context
     def get_context_data(self, **kwargs):
         
         context = super(ThreadView, self).get_context_data(**kwargs)
         context['tags'] = Thread.tags.all()
         context['form'] = ReplyForm(self.request.POST or None)
-        
+        # 
         return context
 
+    #
     def post(self, request, *args, **kwargs):
-        
-        if not self.request.user.is_authenticated():
+        # changed self.request.user.is_authenticated() to self.request.user.is_authenticated
+        if not self.request.user.is_authenticated:
             
             messages.error(self.request,'Login required to post a reply!')
             
@@ -133,7 +137,7 @@ class ReplyCorrectView(View):
 
     def get(self, request, pk):
         
-        reply = get_object_or_404(Reply, pk=pk, thread__author=request.user)
+        reply = get_object_or_404(Reply, pk = pk, thread__author = request.user)
         reply.correct = self.correct
         reply.save()
         message = 'Updated reply!'
@@ -142,7 +146,7 @@ class ReplyCorrectView(View):
             
             data = {'success': True, 'message': message}
             
-            return HttpResponse(json.dumps(data), mimetype='application/json')
+            return HttpResponse(json.dumps(data), mimetype = 'application/json')
         else:
             
             messages.success(request, message)

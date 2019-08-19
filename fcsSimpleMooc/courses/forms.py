@@ -14,12 +14,16 @@ from django.core.mail import send_mail
 from django.conf import settings
 from fcsSimpleMooc.core.mail import send_mail_template
 from .models import Comment
+from logging import PlaceHolder
 
 class ContactCourse(forms.Form):
 
-    name = forms.CharField(label = 'Name', max_length=100)
-    email = forms.EmailField(label = 'E-mail')
-    message = forms.CharField(label = 'Message/Question', widget = forms.Textarea)
+    name = forms.CharField(label = 'Name', max_length=100,
+                           widget= forms.TextInput(attrs = {'placeholder':' Please, enter your name...'}))
+    email = forms.EmailField(label = 'E-mail',
+                             widget= forms.TextInput(attrs = {'placeholder':' and your e-mail...'}))
+    message = forms.CharField(label = 'Message/Question', 
+                              widget = forms.Textarea(attrs = {'placeholder':' and, finally, enter your message/question here.'}))
     
     def send_mail(self, course):
         subject = '%s Course Information' % course
@@ -40,3 +44,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment']
+############################################################
+##################        End         ######################
+############################################################

@@ -7,7 +7,7 @@ class ThreadAdmin(admin.ModelAdmin):
 
     list_display = ['title', 'author', 'created_on', 'updated_on']
     search_fields = ['title', 'author__email', 'body']
-    prepopulated_fields = {'shortcut': ('title',)}
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class ReplyAdmin(admin.ModelAdmin):

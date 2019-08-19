@@ -1,0 +1,66 @@
+		<!-- bootstrap navbar -->
+	    <!-- <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="opacity: 0.9"> --> <!-- bg-dark -->
+	    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="background: linear-gradient(#000 30%, #0000) !important"> <!-- bg-dark -->
+	       
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  
+		  <a class="navbar-brand" href="{% url 'core:home' %}">
+		  	<span class="badge badge-secondary">@it.</span> f-SMOOC
+		  </a>
+		  
+		  <div id="navbarNav" class="navbar-collapse collapse">
+		    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item {{ home_page }}">
+					<a class="nav-link" href="{% url 'core:home' %}">Home</a>
+				</li>
+				<li class="nav-item {{ courses_page }}">
+					<a class="nav-link" href="{% url 'courses:index' %}">Courses</a>
+				</li>
+				<li class="nav-item {{ contact_page }}">
+					<a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+				</li>
+				<li class="nav-item {{ forum_page }}">
+					<a class="nav-link" href="{% url 'forum:index' %}">Forum</a>
+				</li>
+				<!-- {% if user.is_authenticated %}
+				<li class="nav-item {{ dashboard_page }}">
+					<a class="nav-link" href="{% url 'accounts:dashboard' %}">Control Panel</a>
+				</li>
+				{% endif %} -->
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		    {% if not user.is_authenticated %}
+				<li class="nav-item">
+				  <a class="nav-link" href="{% url 'accounts:login' %}">
+					  <i class="fas fa-sign-in-alt"></i>
+					  Connect
+				  </a>
+				</li>>
+			{% else %}
+				<li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <i class="far fa-id-badge"> {{ user }}</i>
+				  </a>
+				  <div class="dropdown-menu">
+					  <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> -->
+					    <a class="dropdown-item" href="{% url 'accounts:dashboard' %}">
+					    	<i class="fa fa-cogs"> 
+					    	Settings</i>
+					    	</a>
+					    <!-- <a class="dropdown-item" href="#">Another action</a> -->
+					    <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+					    <div class="dropdown-divider"></div>
+					    <a class="dropdown-item" href="{% url 'accounts:logout' %}">
+						  	<i class="fas fa-sign-out-alt">
+						  Disconnect</i>
+						</a>
+					  <!-- </div> -->
+				  </div>
+				</li>
+			{% endif %}
+			</ul>
+		    
+		  </div>
+		</nav><!-- end bootstrap navbar -->

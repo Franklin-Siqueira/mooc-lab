@@ -31,7 +31,7 @@ urlpatterns = [path('', index, name = 'index'),
                path('tag/<tag>/', index, name = "index_tagged"),
                path('replies/<pk>/correct/', reply_correct, name = "reply_correct"),
                path('replies/<pk>/incorrect/', reply_incorrect, name = "reply_incorrect"),
-               path('<shortcut>', thread, name = "thread"),]
+               path('<slug>', thread, name = "thread"),]
 
 # urlpatterns = [path('index', views.index, name = 'index'), 
 #                path('<shortcut>', views.details, name = "details"),

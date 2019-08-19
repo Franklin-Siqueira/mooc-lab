@@ -1,8 +1,10 @@
 <a class="pure-menu-heading">my Courses</a>
 <ul>
 	{% for enrollment in enrollments %}
-	<li><a href="#"> {{ enrollment.course }}</a></li> 
+		<li>
+			<a href="#"> {{ enrollment.course }}</a>
+		</li> 
 	{% empty %}
-	<li>No enrolled courses found!</li> 
+		<li>No enrolled courses found!</li> 
 	{% endfor%}
 </ul>

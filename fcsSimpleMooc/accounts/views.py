@@ -1,4 +1,15 @@
 '''
+
+Views for Accounts
+
+    . dashboard
+    . register
+    . password_reset
+    . password_reset_confirm
+    . edit
+    . edit_password
+    . logout_request
+
 '''
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm
@@ -18,7 +29,7 @@ User = get_user_model()
 @login_required
 def dashboard(request):
     template_name = 'accounts/dashboard.html'
-    context = {}
+    context = {"dashboard_page": "active"}
 #     context['enrollments'] = Enrollment.object.filter(user = request.user)
     return render(request, template_name, context)
 
@@ -26,16 +37,25 @@ def register(request):
     #
     MESSAGE_SUCCESS = 'Success! Your registration was processed!'
     template_name = 'accounts/register.html'
+    
     if request.method == 'POST':
+        
         form = RegisterForm(request.POST)
+        
         if form.is_valid():
+            
             user = form.save()
             user = authenticate(username = user.username, password = form.cleaned_data['password1'])
             login(request, user)
+            messages.success(request, MESSAGE_SUCCESS) # new
+            
             return redirect('core:home')
     else:
+        
         form = RegisterForm()
+    
     context = {'form': form}
+    
     return render(request, template_name, context)
 
 def password_reset(request):
@@ -45,10 +65,15 @@ def password_reset(request):
     template_name = 'accounts/password_reset.html'
     context = {}
     form = PasswordResetForm(request.POST or None)
+    
     if form.is_valid():
+        
         form.save()
+        messages.success(request, MESSAGE_SUCCESS) # new
         context['success'] = True
+    
     context['form'] = form
+    
     return render(request, template_name, context)
 
 def password_reset_confirm(request, key):
@@ -59,10 +84,15 @@ def password_reset_confirm(request, key):
     context = {}
     reset = get_object_or_404(PasswordReset, key = key)
     form = SetPasswordForm(user = reset.user, data = request.POST or None)
+    
     if form.is_valid():
+        
         form.save()
+        messages.success(request, MESSAGE_SUCCESS) # new
         context['success'] = True
+    
     context['form'] = form
+    
     return render(request, template_name, context)
 
 @login_required
@@ -72,8 +102,11 @@ def edit(request):
     #
     template_name = 'accounts/edit.html'
     context = {}
+    
     if request.method == 'POST':
-        form = EditAccountForm(request.POST, instance=request.user)
+        
+        form = EditAccountForm(request.POST, instance = request.user)
+        
         if form.is_valid():
             
             form.save()
@@ -84,23 +117,36 @@ def edit(request):
 #             context['success'] = True
 
     else:
-        form = EditAccountForm(instance=request.user)
+        
+        form = EditAccountForm(instance = request.user)
     
     context['form'] = form
+    
     return render(request, template_name, context)
 
 @login_required
 def edit_password(request):
+    #
+    MESSAGE_SUCCESS = 'Success! Your password was updated!'
+    #
     template_name = 'accounts/edit_password.html'
     context = {}
+    
     if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
+        
+        form = PasswordChangeForm(data = request.POST, user = request.user)
+        
         if form.is_valid():
+            
             form.save()
+            messages.success(request, MESSAGE_SUCCESS) # new
             context['success'] = True
     else:
-        form = PasswordChangeForm(user=request.user)
+        
+        form = PasswordChangeForm(user = request.user)
+    
     context['form'] = form
+    
     return render(request, template_name, context)
 
 @login_required

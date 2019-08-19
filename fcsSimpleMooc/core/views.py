@@ -3,7 +3,9 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return render(request, "home.html")
+    context = {"home_page": "active"}
+    return render(request, "home.html", context)
 
 def contact(request):
-    return render(request, "contact.html")
+    context = {"contact_page": "active"}
+    return render(request, "contact.html", context)

@@ -27,7 +27,7 @@ def index(request):
     
     courseList = Course.objects.all()
     template_name = 'courses/index.html'
-    context = {'courseList': courseList} #, 'enrollments': Enrollment.objects.filter(user = request.user)}
+    context = {'courseList': courseList, "courses_page": "active"} #, 'enrollments': Enrollment.objects.filter(user = request.user)}
     
     return render(request, template_name, context)
 #

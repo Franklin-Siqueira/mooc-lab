@@ -1,0 +1,45 @@
+<!--  -->
+	    <div class="col-md-4">
+	        <div class="card">
+	        	<div class="card-body">
+		        	<div class="row">
+			        	<div class="col-md-6">
+			        	<h4 class="card-title"><i class="fas fa-th-list"> Topics</i></h4>
+			            <ul class="list-group list-group-flush">
+			                <li class="list-group-item">
+			                    <a href="./?order="><i class="fa fa-refresh"></i>
+			                        Recently added
+			                    </a>
+			                </li>
+			                <li class="list-group-item">
+			                    <a href="./?order=views"><i class="fa fa-eye"></i>
+			                        More Visualizations
+			                    </a>
+			                </li>
+			                <li class="list-group-item">
+			                    <a href="./?order=answers"><i class="fa fa-comments-o"></i>
+			                        More Commented
+			                    </a>
+			                </li>
+			             </ul>
+			             </div>
+			             <div class="col-md-6">
+							 <div class="card">
+						     	<div class="card-body">
+							       	<h5 class="card-title"><i class="fa fa-tag"> Tags</i></h5>
+							          <!-- <ul> -->   
+					                    {% for tag in tags %}
+						                    <!-- <li> -->
+							                    <a class="card-link" href="{% url 'forum:index_tagged' tag.slug %}">
+							                        <i class="fa fa-tag"> {{ tag }}</i>
+							                    </a>
+						                	<!-- </li> -->
+					                	{% endfor %}
+				            		<!-- </ul> -->
+				            	</div>
+				            </div>
+			            </div>
+		            </div>
+	            </div>
+	        </div>
+	    </div>

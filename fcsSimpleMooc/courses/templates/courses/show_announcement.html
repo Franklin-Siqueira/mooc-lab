@@ -2,45 +2,72 @@
 
 {% block breadcrumb %}
     {{ block.super }}
-    <li>/</li>
-    <li><a href="{% url 'courses:show_announcement' course.shortcut announcement.pk %}">{{ announcement }}</a></li>
+    <li class="breadcrumb-item">
+    	<a href="{% url 'courses:show_announcement' course.shortcut announcement.pk %}">{{ announcement }}
+    	</a>
+    </li>
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="well">
-        <h2>{{ announcement.title }}</h2>
-        {{ announcement.content|linebreaks }}
-    </div>
-    <div class="well">
-        <h4 id="comments">Comments
-        <a class="fright" href="#add_comment">Comment</a></h4>
-        <hr />
-        {% for comment in announcement.comments.all %}
-        <p>
-            <strong>{{ comment.user }}</strong> commented {{ comment.created_on|timesince }} ago: <br />
-            {{ comment.comment|linebreaksbr }}
-        </p>
-        <hr>
-        {% empty %}
-        <p>
-            No comments for this Announcement!
-        </p>
-        {% endfor %}
-        <form method="post" class="pure-form pure-form-stacked" id="add_comment">
-            {% csrf_token %}
-            <fieldset>
-                {{ form.non_field_errors }}
-                {% for field in form %}
-                <div class="pure-control-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {{ field.errors }}
-                </div>
-                {% endfor %}
-                <div class="pure-controls">
-                    <button type="submit" class="pure-button pure-button-primary">Comment!</button>
-                </div>
-            </fieldset>
-        </form>
+ 	<div class="card-body">
+         <h4 class="card-title">
+            <a title=""><i class="fas fa-bullhorn"></i> Announcement: {{ announcement.title }}</a>
+         </h4>
+         <h6 class="card-subtitle mb-2 text-muted">
+            <i class="fas fa-calendar-day"></i> {{ announcement.created_on }}
+         </h6>
+         {{ announcement.content|linebreaks }}
+         <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">
+                	<a title=""><i class="fa fa-comments-o"></i> Comments</a>
+                </h6>
+			     {% for comment in announcement.comments.all %}
+		    	<!-- <i class="fa fa-search"></i> -->
+		        <div class="card">
+		            <div class="card-body">
+		                <h6 class="card-title">
+		                	<a title="">{{ comment.user }}</a>
+		                </h6>
+		                <h6 class="card-subtitle mb-2 text-muted">
+		                    <i class="fas fa-calendar-day"></i> {{ comment.created_on|timesince }} ago
+		                </h6>
+		                {{ comment.comment|linebreaksbr }}
+		            </div>
+		            <div class="card-footer">
+		            	<!-- IMPLEMENT REPLY TO COMMENT -->
+		            </div>
+		        </div>
+		        {% empty %}
+			    <div class="well">
+			        <p>No comments for this Announcement!</p>
+			    </div>
+		    	{% endfor %}
+		   </div>
+		   <div class="card-footer">
+		   		<div class="card">
+            		<div class="card-body">
+		                <h7 class="card-title">
+		                	<a title=""><i class="fa fa-comment"></i> Post your comment...</a>
+		                </h7>
+		                <form id="add_comment" method="post">
+							{% csrf_token %}
+							<fieldset>
+								{{ form.non_field_errors }} 
+								{% for field in form %}
+									<div class="form-group">
+										{{ field }} 
+										{{ field.errors }}
+									</div>
+								{% endfor %}
+								<div class="card-footer">
+									<button type="submit" class="btn btn-secondary btn-sm">Comment!</button>
+								</div>
+							</fieldset>
+						</form>
+	            	</div>
+	            </div>
+		   </div>
+		</div>
     </div>
 {% endblock %}
