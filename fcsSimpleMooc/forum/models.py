@@ -34,6 +34,8 @@ class Thread(models.Model):
                                on_delete = models.PROTECT)
     views = models.IntegerField('Views', blank=True, default=0)
     answers = models.IntegerField('Responses', blank=True, default=0)
+    votePositives = models.IntegerField('PositiveVotes', blank=True, default=0)
+    voteNegatives = models.IntegerField('NegativeVotes', blank=True, default=0)
     
     tags = TaggableManager()
 
@@ -67,6 +69,8 @@ class Reply(models.Model):
                                related_name='replies', 
                                on_delete = models.PROTECT)
     correct = models.BooleanField('Correct?', blank=True, default=False)
+    votePositives = models.IntegerField('PositiveVotes', blank=True, default=0)
+    voteNegatives = models.IntegerField('NegativeVotes', blank=True, default=0)
 
     created_on = models.DateTimeField('Created on', auto_now_add=True)
     updated_on = models.DateTimeField('Last update', auto_now=True)
