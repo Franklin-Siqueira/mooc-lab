@@ -5,6 +5,7 @@ Created on Jul 30, 2019
 '''
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
 
 from fcsSimpleMooc.core.mail import send_mail_template
@@ -14,6 +15,11 @@ from .models import PasswordReset
 
 User = get_user_model()
 
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(widget = forms.TextInput(attrs ={'class':'form-control', 
+                                                                'placeholder':' Please, enter your username...'}))
+    password = forms.CharField(widget = forms.PasswordInput(attrs = {'class':'form-control',
+                                                                     'placeholder':' Please, enter your password...'}))
 
 class PasswordResetForm(forms.Form):
 
@@ -81,4 +87,6 @@ class EditAccountForm(forms.ModelForm):
         
         model = User
         fields = ['username', 'email', 'name']
+##########################################################
 ##########                  END                ###########
+##########################################################

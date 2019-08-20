@@ -1,31 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="well" align="center">
-     <h2>Please, enter your data bellow</h2>
-     <div class="well well-sm">
-     <form method="post">
-         {% csrf_token %}
-         <fieldset>
-             {{ form.non_field_errors }}
-             {% for field in form %}
-             <div class="form-group">
-                 {{ field.label_tag }}
-                 {{ field }}
-                 {{ field.errors }}
-             </div>
-             {% endfor %}
-            <div>
-				<input id="submit" type="submit" class="btn btn-secondary" value="Connect">
+	<div class="container">
+		<!-- Begin ROW -->
+		<div class="row justify-content-center">
+			<!-- Columns -->
+			<div class="col-md-6 col-sm-6 col-lg-6">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-title"><i class="fas fa-sign-in-alt"> Please, enter your data...</i></h3>
+						<hr>
+						<p class="card-text"> 
+							<form method="post">
+						         {% csrf_token %}
+						         <fieldset>
+						             {{ form.non_field_errors }}
+						             {% for field in form %}
+						             <div class="form-group">
+						                 {{ field.label_tag }}
+						                 {{ field }}
+						                 {{ field.errors }}
+						             </div>
+						             {% endfor %}
+						            <div>
+										<input id="submit" type="submit" class="btn btn-secondary" value="Connect">
+									</div>
+						         </fieldset>
+						     </form>
+						</p>
+		            </div>
+		            <div class="card-footer">
+			            <p>
+					      Don't have an account? <a href="{% url 'accounts:register' %}" title="">Register</a> <br />
+					      Forgot password? <a href="{% url 'accounts:password_reset' %}" title="">Change password</a> <br />
+					   	</p>
+		            </div>
+				</div>
 			</div>
-         </fieldset>
-     </form>
-     </div>
-     <div class="well well-sm">
-	   <p>
-	      Don't have an account? <a href="{% url 'accounts:register' %}" title="">Register</a> <br />
-	      Forgot password? <a href="{% url 'accounts:password_reset' %}" title="">Change password</a> <br />
-	   </p>
-	 </div>
-</div>
+		</div>
+	</div>
 {% endblock %}
