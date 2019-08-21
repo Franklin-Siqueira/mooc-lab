@@ -23,7 +23,8 @@ class LoginForm(AuthenticationForm):
 
 class PasswordResetForm(forms.Form):
 
-    email = forms.EmailField(label = 'E-mail')
+    email = forms.EmailField(label = 'E-mail', widget = forms.TextInput(attrs = {'class':'form-control',
+                                                                     'placeholder':' Please, enter your email...'}))
 
     def clean_email(self):
         

@@ -57,6 +57,22 @@ class Thread(models.Model):
         ordering = ['-updated_on']
 
 
+# IDEA (under development)
+class DatesLog(models.Model):
+    
+#     callerId = models.ForeignKey(settings.AUTH_USER_MODEL,
+#                                  verbose_name='Autor',
+#                                  related_name='replies',
+#                                  on_delete = models.PROTECT)
+    created_on = models.DateTimeField('Created on', auto_now_add=True)
+    updated_on = models.DateTimeField('Last update', auto_now=True)
+
+class VotesTable(models.Model):
+    
+    votePositives = models.IntegerField('PositiveVotes', blank=True, default=0)
+    voteNegatives = models.IntegerField('NegativeVotes', blank=True, default=0)
+    
+
 class Reply(models.Model):
 
     thread = models.ForeignKey(Thread, 
