@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # libraries (libs)
     'taggit',
     # custom apps
@@ -107,6 +108,9 @@ ROOT_URLCONF = 'fcsSimpleMooc.urls'
 
 WSGI_APPLICATION = 'fcsSimpleMooc.wsgi.application'
 
+# for 
+SITE_ID = 2
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 #
@@ -144,15 +148,17 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'fcsSimpleMooc', 'media')
 MEDIA_URL = '/media/'
 
-# E-mails
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#                           E-mails
+# Development with true dispatch
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Devellopment   without sending 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'info@csadesign.eco.br'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'mail.csadesign.eco.br'
 EMAIL_HOST_USER = 'info@csadesign.eco.br'
 EMAIL_HOST_PASSWORD = '245353f10@I!'
-EMAIL_PORT = 465
+EMAIL_HOST = 'mail.csadesign.eco.br'
+EMAIL_PORT = 587 # was 465
 
 # e-mail from csadesign.eco.br
 CONTACT_EMAIL = 'info@csadesign.eco.br'

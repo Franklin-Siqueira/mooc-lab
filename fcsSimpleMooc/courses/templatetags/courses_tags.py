@@ -1,3 +1,10 @@
+'''
+
+    . courses_tags
+        .. my_courses(user)
+        .. load_my_courses(user)
+
+'''
 from django.template import Library
 
 register = Library()

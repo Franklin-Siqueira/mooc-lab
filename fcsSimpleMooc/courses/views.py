@@ -31,6 +31,14 @@ def index(request):
     
     return render(request, template_name, context)
 #
+@login_required
+def FontTest(request):
+    
+    template_name = 'courses/fontTest.html'
+    context = {"courses_page": "active"}
+    
+    return render(request, template_name, context)
+#
 def details(request, shortcut):
     # get Course by shortcut  or returns page not found
     courseName = get_object_or_404(Course, shortcut = shortcut)

@@ -1,3 +1,5 @@
+# from django.http import request
+# from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.template.defaultfilters import striptags
 from django.core.mail import EmailMultiAlternatives
@@ -10,8 +12,9 @@ def send_mail_template(subject,
                        from_email = settings.DEFAULT_FROM_EMAIL, 
                        fail_silently = False):
     
-    message_html = render_to_string(template_name, 
-                                    context)
+#     context['baseDir'] = get_current_site(request)
+    
+    message_html = render_to_string(template_name, context)
 
     message_txt = striptags(message_html)
     

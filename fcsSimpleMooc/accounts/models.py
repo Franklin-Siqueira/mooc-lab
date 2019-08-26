@@ -30,6 +30,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+
     def __str__(self):
         return self.name or self.username
 
@@ -39,11 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_full_name(self):
         return str(self)
 
-    class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
-
-
+#
 class PasswordReset(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name = 'User', on_delete=models.PROTECT) #related_name = 'resets')
@@ -51,13 +51,14 @@ class PasswordReset(models.Model):
     created_at = models.DateTimeField('Created on', auto_now_add = True)
     confirmed = models.BooleanField('Confirmed?', default=False, blank = True)
 
-    def __str__(self):
-        return '{0} on {1}'.format(self.user, self.created_at)
-
     class Meta:
         verbose_name = 'New password'
         verbose_name_plural = 'New passwords'
         ordering = ['-created_at']
+
+    def __str__(self):
+        return '{0} on {1}'.format(self.user, self.created_at)
+
 ##########################################################
 ##########                  END                ###########
 ##########################################################

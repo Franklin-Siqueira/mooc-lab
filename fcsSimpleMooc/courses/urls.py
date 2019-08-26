@@ -21,7 +21,8 @@ admin.autodiscover()
 # 'fcsSimpleMooc.core.views.home'
 app_name = 'courses'
 
-urlpatterns = [path('index', views.index, name = 'index'), 
+urlpatterns = [path('index', views.index, name = 'index'),
+               path('FontTest', views.FontTest, name = 'FontTest'),
                path('<shortcut>', views.details, name = "details"),
                path('<shortcut>/enrollment/', views.enrollment, name = "enrollment"),
                path('<shortcut>/undo_enrollment/', views.undo_enrollment, name = "undo_enrollment"),

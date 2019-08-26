@@ -9,7 +9,7 @@ Testing for the models
 
 run:
 
-$ python manage.py test
+    $ python manage.py test
 
 '''
 from django.core import mail
@@ -17,9 +17,9 @@ from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
 from django.conf import settings
-
+# For random modelss creation
 from model_mommy import mommy
-
+###
 from fcsSimpleMooc.courses.models import Course
 
 

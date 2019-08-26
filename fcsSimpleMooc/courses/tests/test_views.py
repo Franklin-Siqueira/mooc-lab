@@ -1,24 +1,36 @@
+'''
+
+. ContactCourseTestCase
+
+    .. setUp(self)
+    .. tearDown(self)
+    .. test_contact_form_error(self)
+
+run:
+
+    $ python manage.py test
+
+'''
 from django.core import mail
 from django.test import TestCase
 from django.test.client import Client
 from django.urls import reverse
 from django.conf import settings
-
+#
 from fcsSimpleMooc.courses.models import Course
-
 
 class ContactCourseTestCase(TestCase):
 
     def setUp(self):
-        
+        # create new course instance
         self.course = Course.objects.create(name = 'Django', shortcut = 'django')
 
     def tearDown(self):
-        
+        # delete course instance
         self.course.delete()
 
     def test_contact_form_error(self):
-        
+        # 
         data = {'name': 'John Doe', 'email': '', 'message': ''}
         client = Client()
         path = reverse('courses:details', args = [self.course.shortcut])

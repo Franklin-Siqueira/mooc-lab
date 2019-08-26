@@ -8,7 +8,9 @@
 		 <div class="card">
 		     <div class="row no-gutters">
 		     	<div class="col-auto">
-		         	<img class="img-fluid" src="http://placehold.it/400x250" alt="Exercises">
+		     	<!-- /Users/franklincarrilho/Documents/ProgrammingProjects/Resources/images/fromInternet/photos/closeup/400x300_writing_on_paper_02.jpg
+		     	href="https://www.csadesign.eco.br/img/photos/closeup/400x300_writing_on_paper_02.jpg" -->
+		         	<img class="img-fluid" src="https://www.csadesign.eco.br/img/photos/closeup/400x300_writing_on_paper_02.jpg" alt="Sign Up!">
 		         </div>
 		         <div class="col my-auto">
 		             <div class="card-block px-2">
@@ -21,21 +23,27 @@
 			                {{ form.non_field_errors }}
 			                {% for field in form %}
 			                <div class="form-group">
-			                    {{ field.label_tag }}
+			                    
 			                    {{ field }}
 			                    {{ field.errors }}
 			                </div>
 			                {% endfor %}
+			                <div class="card-footer">
+					              <small>By registering in our application you agree...</small>
+					              <p>
+					              <small>
+					              		<a href={% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ object.get_absolute_url }}> Home</a>
+					              </small>
+					              </p>
+					              <span><input id="submit" type="submit" class="btn btn-secondary float-right" value="Register"></span>
+					        </div>
 			            	</fieldset>
 			        	</form>
 		                 <!-- <a href="#" class="btn btn-primary">BUTTON</a> -->
 		             </div>
 		         </div>
 		      </div>
-		      <div class="card-footer">
-	              <small>By registering in our application you agree...</small>
-	              <span><input id="submit" type="submit" class="btn btn-secondary float-right" value="Register"></span>
-	          </div>
+
 		</div>
 	</div>
 </div>

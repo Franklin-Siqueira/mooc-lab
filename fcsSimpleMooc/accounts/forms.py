@@ -3,11 +3,17 @@ Created on Jul 30, 2019
 
 @author: franklincarrilho
 '''
+#
+import datetime
 from django import forms
+from django.http import request
+from django.contrib.sites.requests import RequestSite
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
-
+from django.conf import settings
+#
 from fcsSimpleMooc.core.mail import send_mail_template
 from fcsSimpleMooc.core.utils import generate_hash_key
 
@@ -40,22 +46,38 @@ class PasswordResetForm(forms.Form):
         user = User.objects.get(email = self.cleaned_data['email'])
         key = generate_hash_key(user.username)
         reset = PasswordReset(key = key, user = user)
-        reset.save()
+        reset.save()        
         #
         template_name = 'accounts/password_reset_mail.html'
-        subject = 'Create new password'
-        context = {'reset': reset,}
+        subject = 'fcSMOOC new password creation request'
+        context = {}
+#         urlMail = Site.objects.get_current()
+#         site = RequestSite(request)
+#         print(site)
+        context['dateValue'] = datetime.datetime.now()
+        context['reset'] = reset
+        context['user'] = user
+        context['baseDir'] = get_current_site(request)
         #
         send_mail_template(subject, template_name, context, [user.email])
 
-
+#
 class RegisterForm(forms.ModelForm):
 
+    username = forms.CharField(label = 'Name', max_length=100,
+                           widget= forms.TextInput(attrs = {'placeholder':' Type your username...'}))
+    email = forms.EmailField(label = 'E-mail',
+                             widget= forms.TextInput(attrs = {'placeholder':' add your e-mail'}))    
     password1 = forms.CharField(label = 'Password', 
-                                widget = forms.PasswordInput(attrs = {'placeholder':' Please, enter your password...'}))
+                                widget = forms.PasswordInput(attrs = {'placeholder':' your password...'}))
     password2 = forms.CharField(label = 'Confirm password', 
-                                widget = forms.PasswordInput(attrs = {'placeholder':' Please, confirm your password...'}))
-
+                                widget = forms.PasswordInput(attrs = {'placeholder':' and confirm your password.'}))
+    #
+    class Meta:
+         
+        model = User
+        fields = ['username', 'email']
+    
     def clean_password2(self):
         
         password1 = self.cleaned_data.get("password1")
@@ -75,12 +97,6 @@ class RegisterForm(forms.ModelForm):
             user.save()
             
         return user
-
-    class Meta:
-        
-        model = User
-        fields = ['username', 'email']
-
 
 class EditAccountForm(forms.ModelForm):
 

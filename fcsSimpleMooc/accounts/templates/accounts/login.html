@@ -1,3 +1,8 @@
+<!-- 
+
+	. Login form
+
+ -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -5,7 +10,7 @@
 		<!-- Begin ROW -->
 		<div class="row justify-content-center">
 			<!-- Columns -->
-			<div class="col-md-6 col-sm-6 col-lg-6">
+			<div class="col-md-6 col-sm-6 col-lg-6 justify-content-center">
 				<div class="card">
 					<div class="card-body">
 						<h3 class="card-title"><i class="fas fa-sign-in-alt"> Please, enter your data...</i></h3>
@@ -17,12 +22,18 @@
 						             {{ form.non_field_errors }}
 						             {% for field in form %}
 						             <div class="form-group">
-						                 {{ field.label_tag }}
+						                 <legend>
+						                 	<small class="form-text form-control-sm">
+						                 		{{ field.label_tag }}
+						                 	</small>
+						                 </legend>
 						                 {{ field }}
-						                 {{ field.errors }}
+						                 <small class="form-text text-muted">
+						                 	{{ field.errors }}
+						                 </small>
 						             </div>
 						             {% endfor %}
-						            <div>
+						            <div class="col text-center">
 										<input id="submit" type="submit" class="btn btn-secondary" value="Connect">
 									</div>
 						         </fieldset>
