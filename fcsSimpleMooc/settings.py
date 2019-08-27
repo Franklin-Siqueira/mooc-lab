@@ -108,7 +108,7 @@ ROOT_URLCONF = 'fcsSimpleMooc.urls'
 
 WSGI_APPLICATION = 'fcsSimpleMooc.wsgi.application'
 
-# for 
+# for fcsmooc.herokuapp.com
 SITE_ID = 3
 
 # Database
