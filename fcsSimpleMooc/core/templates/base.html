@@ -18,11 +18,16 @@ Includes:
 	<head>	
 	    <title>fcsSimpleMooc - e-Learning Platform</title>
 	    <meta name="description" content="fcsSimpleMooc - Simple e-Learning Platform"/>
-	    <link rel="stylesheet" href="https://fcsaws.s3.amazonaws.com/static/css/pure-min.css"/>
-	    <link rel="stylesheet" href="https://fcsaws.s3.amazonaws.com/static/css/styles.css"/>
 	    {% include 'baseMeta.html' %}
 	</head>
 	<body>
+		<!-- Progress bar  -->
+		<div class="progress">
+		   <div class="bar" id="bar1"></div>
+		   <div class="percent" id="percent"></div>
+		</div>
+		<input id="progress_width" type="hidden" value="0">
+		
 		<!-- Back to Top  -->
 		<a href="#" id="scroll" style="display: none;"><span><i class="fas fa-angle-up"></i></span></a>
 		
@@ -97,6 +102,8 @@ Includes:
 				</div>
 			</div>
 		</div><!-- end logout Modal HTML -->
+		
+		<!-- Scroll Script -->
 		<script type="text/javascript">
 			$(document).ready(function(){ 
 			    $(window).scroll(function(){ 
@@ -112,6 +119,8 @@ Includes:
 			    }); 
 			});
 		</script>
+		
+		<!-- Modal Script -->
 		<script type="text/javascript">
 			/* $(document).ready(function(){
 				$("#myModal").modal('show');

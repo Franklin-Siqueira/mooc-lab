@@ -109,7 +109,7 @@ ROOT_URLCONF = 'fcsSimpleMooc.urls'
 WSGI_APPLICATION = 'fcsSimpleMooc.wsgi.application'
 
 # for fcsmooc.herokuapp.com
-SITE_ID = 3
+SITE_ID = 2
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

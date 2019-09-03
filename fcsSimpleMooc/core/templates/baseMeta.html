@@ -13,23 +13,16 @@
 		<link rel="stylesheet" href="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/dist/css/account.css">
 		
 		<!--                                 Public CSS                                    -->
-		<!-- <link rel="stylesheet" href="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/css/bootstrap.min.css"> -->
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<!-- <link rel="stylesheet" href="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/css/bootstrap.css"> -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	
 	    <!--                                    JS                                         -->
 		<!--                                  JQuery                                       -->
-		<!-- <script src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/scripts/jquery-3.4.1.min.js"></script> -->
-		<!-- <script src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/scripts/jquery.js"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 		
 		<!--                           Bootstrap 4 and Popper                              -->
-		<!-- <script src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/scripts/popper.min.js')}}"></script> -->
-		<!-- <script src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/scripts/bootstrap.js')}}"></script> -->
-		<!-- <script src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/scripts/bootstrap.min.js')}}"></script> -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<!-- <script src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/scripts/bootstrap.bundle.min.js')}}"></script> -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
@@ -70,6 +63,33 @@
 			    filter:"alpha(opacity=100)";
 			    -ms-filter:"alpha(opacity=100)";
 			}
+		</style>
+		<!--                          For Page Load Progress Bar                                -->
+		<style>
+			.progress{
+	          position: fixed;
+	          left: 0;
+	          top: 0;
+	          width: 100%;
+	          height: 100%;
+	          z-index: 9999;
+	          background-color: #F2F2F2;
+	          background: "../static/img/loader_02.gif";
+	          background-position: center;
+	          opacity: .95;
+	        }
+	        .bar{
+	          background-color:#048a11;
+	          width: 0%;
+	          height: 10px;
+	          border-radius: 3px;
+	        }
+	        .percent{
+	          position: absolute;
+	          display: inline-block;
+	          top: 3px;
+	          left: 48%;
+	        }
 		</style>
 		<!--                               Generic CSS                                     -->
 		<style>
@@ -122,4 +142,43 @@
 			    border-radius: 50%;
 			}
 		</style>
+		<!--                          Script for Page Load Progress Bar                     -->
+		<script>
+	        var all = document.getElementsByTagName("*");
+	        var totalElems = all.length;
+	        
+	         document.onreadystatechange = function(e){
+	          if(document.readyState == "interactive"){
+	            var all = document.getElementsByTagName("*");
+	            for (var i = 0, max = all.length; i < max; i++){
+	              set_ele(all[i]);
+	            }
+	          }
+	        }
+	
+	        function check_element(ele){
+	
+	            var all = document.getElementsByTagName("*");
+	            var totalElems = all.length;
+	            var per_inc = 100/totalElems;
+	
+	            if($(ele).on()){
+	              var prog_width = per_inc + Number(document.getElementById("progress_width").value);
+	              document.getElementById("progress_width").value = prog_width;
+	
+	              $("#bar1").animate({width: prog_width + "%"}, 10, function(){
+	
+	              if(document.getElementById("bar1").style.width == "100%"){
+	                  $(".progress").fadeOut("slow");
+	                }
+	              });
+	            } else {
+	              set_ele(ele);
+	            }
+	        }
+	
+	        function set_ele(set_element){
+	          check_element(set_element);
+	        }
+	    </script>
 {% endblock %}
