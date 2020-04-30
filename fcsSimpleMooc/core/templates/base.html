@@ -1,58 +1,63 @@
-<!-- 
+<!--
+
+Host: heroku
+
+App Name: mooclab
 
 Project:
 		.fcsSimpleMooc
-Page: 
+Page:
 		. base.html
-		
-Includes: 
-		. baseMeta.html
-		. baseNavBar.html
-		. baseFooter.html
-		
+
+Includes:
+		. mooclab/fSimpleMooc/core/templates/baseMeta.html
+		. mooclab/fSimpleMooc/core/templates/baseNavBar.html
+		. mooclab/fSimpleMooc/core/templates/baseFooter.html
+
  -->
 <!doctype html>
 {% load static %}
 <html lang="en">
 	<!--                                   Head                               -->
-	<head>	
+	<head>
 	    <title>fcsSimpleMooc - e-Learning Platform</title>
 	    <meta name="description" content="fcsSimpleMooc - Simple e-Learning Platform"/>
 	    {% include 'baseMeta.html' %}
 	</head>
 	<body>
+
 		<!-- Progress bar  -->
-		<div class="progress">
+		<!-- <div class="progress">
 		   <div class="bar" id="bar1"></div>
 		   <div class="percent" id="percent"></div>
 		</div>
-		<input id="progress_width" type="hidden" value="0">
-		
+		<input id="progress_width" type="hidden" value="0"> -->
+
 		<!-- Back to Top  -->
 		<a href="#" id="scroll" style="display: none;"><span><i class="fas fa-angle-up"></i></span></a>
-		
+
 		<!-- block navbarcontent -->
 		{% include 'baseNavBar.html' %}
-		
+
 		<!-- main container -->
 		<div class=".container-fluid ">
-		       
-		    <!-- block for derived pages -->  
+
+		    <!-- block for derived pages -->
 		    {% block content %}
 		    {% endblock %}<!-- end block for derived pages -->
-		    
+
 		    <!-- display if any messages from the system -->
 		    {% if messages %}
 		    <div class="modal fade" id="myModal">
 			   <div class="modal-dialog modal-dialog-centered">
 			     <div class="modal-content">
-			     
+
 			       <!-- modal Header -->
 			       <div class="modal-header">
 			         <h4 class="modal-title">Attention Required !</h4>
 			         <button type="button" class="close" data-dismiss="modal">&times;</button>
 			       </div>
-			       
+
 			       <!-- modal body -->
 			       <div class="modal-body">
 				       {% for message in messages%}
@@ -61,33 +66,33 @@ Includes:
 							</p>
 				       {% endfor %}
 			       </div>
-			       
+
 			       <!-- modal footer -->
 			       <div class="modal-footer">
 			         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			       </div>
-			       
+
 			     </div>
 			   </div>
 			</div>
 			{% endif %}<!-- end display messages -->
 		</div><!-- end main container -->
-		
+
 		<!-- block footercontent -->
 		{% include 'baseFooter.html' %}
-				
+
 		<!-- include scripts here  -->
-		
+
 		<!-- begin LOGOUT modal HTML -->
 		<div id="myModalLogout" class="modal fade">
 			<div class="modal-dialog modal-login">
 				<div class="modal-content">
-				
+
 					<div class="modal-header">
 						<div class="avatar">
 							<img src="https://fcsaws.s3-sa-east-1.amazonaws.com/fcsstatic/img/avatar.png" alt="Avatar">
-						</div>				
-						<h4 class="modal-title">Confirm Logout?</h4>	
+						</div>
+						<h4 class="modal-title">Confirm Logout?</h4>
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
@@ -98,28 +103,28 @@ Includes:
 							</div>
 						</form><!-- end form setup -->
 					</div>
-					
+
 				</div>
 			</div>
 		</div><!-- end logout Modal HTML -->
-		
+
 		<!-- Scroll Script -->
 		<script type="text/javascript">
-			$(document).ready(function(){ 
-			    $(window).scroll(function(){ 
-			        if ($(this).scrollTop() > 100) { 
-			            $('#scroll').fadeIn(); 
-			        } else { 
-			            $('#scroll').fadeOut(); 
-			        } 
-			    }); 
-			    $('#scroll').click(function(){ 
-			        $("html, body").animate({ scrollTop: 0 }, 600); 
-			        return false; 
-			    }); 
+			$(document).ready(function(){
+			    $(window).scroll(function(){
+			        if ($(this).scrollTop() > 100) {
+			            $('#scroll').fadeIn();
+			        } else {
+			            $('#scroll').fadeOut();
+			        }
+			    });
+			    $('#scroll').click(function(){
+			        $("html, body").animate({ scrollTop: 0 }, 600);
+			        return false;
+			    });
 			});
 		</script>
-		
+
 		<!-- Modal Script -->
 		<script type="text/javascript">
 			/* $(document).ready(function(){
